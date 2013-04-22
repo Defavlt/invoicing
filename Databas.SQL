@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 04/21/2013 12:04:52
+-- Date Created: 04/22/2013 22:20:50
 -- Generated from EDMX file: C:\Users\marcus.hansson1\Dropbox\Programmering\C#\Arbete\Invoice\Invoice\Models\Invoicing.edmx
 -- --------------------------------------------------
 
@@ -71,7 +71,6 @@ CREATE TABLE [dbo].[Customers] (
     [Namn] nvarchar(max)  NOT NULL,
     [Address] nvarchar(max)  NOT NULL,
     [ReferensPersoner] nvarchar(max)  NOT NULL,
-    [Company_Id] int  NOT NULL,
     [Projekt_Id] int  NOT NULL
 );
 GO
@@ -95,7 +94,6 @@ CREATE TABLE [dbo].[Employees] (
     [Adress] nvarchar(max)  NOT NULL,
     [Telefon] int  NOT NULL,
     [Konto] bigint  NOT NULL,
-    [Company_Id] int  NOT NULL,
     [Dailyreport_Id] int  NOT NULL
 );
 GO
@@ -149,34 +147,6 @@ GO
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
-
--- Creating foreign key on [Company_Id] in table 'Customers'
-ALTER TABLE [dbo].[Customers]
-ADD CONSTRAINT [FK_CustomerCompany]
-    FOREIGN KEY ([Company_Id])
-    REFERENCES [dbo].[Companies]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CustomerCompany'
-CREATE INDEX [IX_FK_CustomerCompany]
-ON [dbo].[Customers]
-    ([Company_Id]);
-GO
-
--- Creating foreign key on [Company_Id] in table 'Employees'
-ALTER TABLE [dbo].[Employees]
-ADD CONSTRAINT [FK_EmployeesCompany]
-    FOREIGN KEY ([Company_Id])
-    REFERENCES [dbo].[Companies]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_EmployeesCompany'
-CREATE INDEX [IX_FK_EmployeesCompany]
-ON [dbo].[Employees]
-    ([Company_Id]);
-GO
 
 -- Creating foreign key on [Projekt_Id] in table 'Customers'
 ALTER TABLE [dbo].[Customers]
