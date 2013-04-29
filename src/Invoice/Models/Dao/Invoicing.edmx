@@ -1,0 +1,548 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Invoice.Models.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="InvoiceModelsStoreContainer">
+    <EntitySet Name="Companies" EntityType="Invoice.Models.Store.Companies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Customers" EntityType="Invoice.Models.Store.Customers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Dailyreports" EntityType="Invoice.Models.Store.Dailyreports" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employees" EntityType="Invoice.Models.Store.Employees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Projects" EntityType="Invoice.Models.Store.Projects" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Projects_Projekt" EntityType="Invoice.Models.Store.Projects_Projekt" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Customers_Kund" EntityType="Invoice.Models.Store.Customers_Kund" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Dailyreports_Dagsrapport" EntityType="Invoice.Models.Store.Dailyreports_Dagsrapport" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employees_Anställd" EntityType="Invoice.Models.Store.Employees_Anställd" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Companies_Företag" EntityType="Invoice.Models.Store.Companies_Företag" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ProjektCustomer" Association="Invoice.Models.Store.FK_ProjektCustomer">
+      <End Role="Projekt" EntitySet="Projects" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyreportEmployees" Association="Invoice.Models.Store.FK_DailyreportEmployees">
+      <End Role="Dailyreport" EntitySet="Dailyreports" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyreportProjekt" Association="Invoice.Models.Store.FK_DailyreportProjekt">
+      <End Role="Dailyreport" EntitySet="Dailyreports" />
+      <End Role="Projekt" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Projekt_inherits_Project" Association="Invoice.Models.Store.FK_Projekt_inherits_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Projekt" EntitySet="Projects_Projekt" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kund_inherits_Customer" Association="Invoice.Models.Store.FK_Kund_inherits_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Kund" EntitySet="Customers_Kund" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dagsrapport_inherits_Dailyreport" Association="Invoice.Models.Store.FK_Dagsrapport_inherits_Dailyreport">
+      <End Role="Dailyreport" EntitySet="Dailyreports" />
+      <End Role="Dagsrapport" EntitySet="Dailyreports_Dagsrapport" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Anställd_inherits_Employee" Association="Invoice.Models.Store.FK_Anställd_inherits_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Anställd" EntitySet="Employees_Anställd" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Företag_inherits_Company" Association="Invoice.Models.Store.FK_Företag_inherits_Company">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="Företag" EntitySet="Companies_Företag" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Companies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Namn" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Org__nummer" Type="bigint" Nullable="false" />
+    <Property Name="Momsreg__nummer" Type="bigint" Nullable="false" />
+    <Property Name="Adress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Postnummer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Land" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Epost" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telefon" Type="bigint" Nullable="false" />
+    <Property Name="Hemsida" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Logotyp" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Övrig___information" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ort" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Namn" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ReferensPersoner" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Projekt_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dailyreports">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Datum" Type="datetime" Nullable="false" />
+    <Property Name="Kund" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Projekt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Anställd" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartTid" Type="time" Nullable="false" />
+    <Property Name="SlutTid" Type="time" Nullable="false" />
+    <Property Name="Employee_Id" Type="int" Nullable="false" />
+    <Property Name="Projekts_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Namn" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Adress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telefon" Type="int" Nullable="false" />
+    <Property Name="Konto" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Projects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Namn" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Kund" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartDatum" Type="datetime" Nullable="false" />
+    <Property Name="SlutDatum" Type="datetime" Nullable="false" />
+    <Property Name="Beskrivning" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Projects_Projekt">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customers_Kund">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dailyreports_Dagsrapport">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees_Anställd">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Companies_Företag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ProjektCustomer">
+    <End Role="Projekt" Type="Invoice.Models.Store.Projects" Multiplicity="1" />
+    <End Role="Customer" Type="Invoice.Models.Store.Customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projekt">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="Projekt_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyreportEmployees">
+    <End Role="Dailyreport" Type="Invoice.Models.Store.Dailyreports" Multiplicity="*" />
+    <End Role="Employee" Type="Invoice.Models.Store.Employees" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dailyreport">
+        <PropertyRef Name="Employee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyreportProjekt">
+    <End Role="Dailyreport" Type="Invoice.Models.Store.Dailyreports" Multiplicity="*" />
+    <End Role="Projekt" Type="Invoice.Models.Store.Projects" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Projekt">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dailyreport">
+        <PropertyRef Name="Projekts_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Projekt_inherits_Project">
+    <End Role="Project" Type="Invoice.Models.Store.Projects" Multiplicity="1" />
+    <End Role="Projekt" Type="Invoice.Models.Store.Projects_Projekt" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Projekt">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kund_inherits_Customer">
+    <End Role="Customer" Type="Invoice.Models.Store.Customers" Multiplicity="1" />
+    <End Role="Kund" Type="Invoice.Models.Store.Customers_Kund" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kund">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dagsrapport_inherits_Dailyreport">
+    <End Role="Dailyreport" Type="Invoice.Models.Store.Dailyreports" Multiplicity="1" />
+    <End Role="Dagsrapport" Type="Invoice.Models.Store.Dailyreports_Dagsrapport" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Dailyreport">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dagsrapport">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Anställd_inherits_Employee">
+    <End Role="Employee" Type="Invoice.Models.Store.Employees" Multiplicity="1" />
+    <End Role="Anställd" Type="Invoice.Models.Store.Employees_Anställd" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Anställd">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Företag_inherits_Company">
+    <End Role="Company" Type="Invoice.Models.Store.Companies" Multiplicity="1" />
+    <End Role="Företag" Type="Invoice.Models.Store.Companies_Företag" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Företag">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Invoice.Models" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="ProjektarbeteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Companies" EntityType="Invoice.Models.Company" />
+          <EntitySet Name="Customers" EntityType="Invoice.Models.Customer" />
+          <EntitySet Name="Dailyreports" EntityType="Invoice.Models.Dailyreport" />
+          <EntitySet Name="Employees" EntityType="Invoice.Models.Employee" />
+          <EntitySet Name="Projects" EntityType="Invoice.Models.Project" />
+          <AssociationSet Name="FK_ProjektCustomer" Association="Invoice.Models.FK_ProjektCustomer">
+            <End Role="Projekt" EntitySet="Projects" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyreportEmployees" Association="Invoice.Models.FK_DailyreportEmployees">
+            <End Role="Dailyreport" EntitySet="Dailyreports" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyreportProjekt" Association="Invoice.Models.FK_DailyreportProjekt">
+            <End Role="Dailyreport" EntitySet="Dailyreports" />
+            <End Role="Projekt" EntitySet="Projects" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Company" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Namn" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="Org__nummer" Nullable="false" />
+          <Property Type="Int64" Name="Momsreg__nummer" Nullable="false" />
+          <Property Type="String" Name="Adress" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Postnummer" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Land" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Epost" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="Telefon" Nullable="false" />
+          <Property Type="String" Name="Hemsida" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Logotyp" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Övrig___information" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Ort" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer" Abstract="false">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Namn" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ReferensPersoner" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Projects" Relationship="Invoice.Models.FK_ProjektCustomer" FromRole="Customer" ToRole="Projekt" />
+        </EntityType>
+        <EntityType Name="Dailyreport" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="Datum" Nullable="false" />
+          <Property Type="String" Name="Kund" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Projekt" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Anställd" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Time" Name="StartTid" Nullable="false" />
+          <Property Type="Time" Name="SlutTid" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Invoice.Models.FK_DailyreportEmployees" FromRole="Dailyreport" ToRole="Employee" />
+          <NavigationProperty Name="Projekts" Relationship="Invoice.Models.FK_DailyreportProjekt" FromRole="Dailyreport" ToRole="Projekt" />
+        </EntityType>
+        <EntityType Name="Employee" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Namn" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Adress" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Telefon" Nullable="false" />
+          <Property Type="Int64" Name="Konto" Nullable="false" />
+          <NavigationProperty Name="Dailyreports" Relationship="Invoice.Models.FK_DailyreportEmployees" FromRole="Employee" ToRole="Dailyreport" />
+        </EntityType>
+        <EntityType Name="Project" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Namn" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Kund" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="StartDatum" Nullable="false" />
+          <Property Type="DateTime" Name="SlutDatum" Nullable="false" />
+          <Property Type="String" Name="Beskrivning" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="Invoice.Models.FK_ProjektCustomer" FromRole="Projekt" ToRole="Customer" />
+          <NavigationProperty Name="Dailyreports" Relationship="Invoice.Models.FK_DailyreportProjekt" FromRole="Projekt" ToRole="Dailyreport" />
+        </EntityType>
+        <Association Name="FK_ProjektCustomer">
+          <End Type="Invoice.Models.Project" Role="Projekt" Multiplicity="1" />
+          <End Type="Invoice.Models.Customer" Role="Customer" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_DailyreportEmployees">
+          <End Type="Invoice.Models.Dailyreport" Role="Dailyreport" Multiplicity="*" />
+          <End Type="Invoice.Models.Employee" Role="Employee" Multiplicity="1" />
+        </Association>
+        <Association Name="FK_DailyreportProjekt">
+          <End Type="Invoice.Models.Dailyreport" Role="Dailyreport" Multiplicity="*" />
+          <End Type="Invoice.Models.Project" Role="Projekt" Multiplicity="1" />
+        </Association>
+        <EntityType Name="Projekt" BaseType="Invoice.Models.Project" />
+        <EntityType Name="Kund" BaseType="Invoice.Models.Customer" Abstract="false" />
+        <EntityType Name="Dagsrapport" BaseType="Invoice.Models.Dailyreport" />
+        <EntityType Name="Anställd" BaseType="Invoice.Models.Employee" />
+        <EntityType Name="Inställningar" BaseType="Invoice.Models.Company" />
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="InvoiceModelsStoreContainer" CdmEntityContainer="ProjektarbeteEntities">
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="IsTypeOf(Invoice.Models.Company)">
+        <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Namn" ColumnName="Namn" />
+          <ScalarProperty Name="Org__nummer" ColumnName="Org__nummer" />
+          <ScalarProperty Name="Momsreg__nummer" ColumnName="Momsreg__nummer" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Postnummer" ColumnName="Postnummer" />
+          <ScalarProperty Name="Land" ColumnName="Land" />
+          <ScalarProperty Name="Epost" ColumnName="Epost" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Hemsida" ColumnName="Hemsida" />
+          <ScalarProperty Name="Logotyp" ColumnName="Logotyp" />
+          <ScalarProperty Name="Övrig___information" ColumnName="Övrig___information" />
+          <ScalarProperty Name="Ort" ColumnName="Ort" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Invoice.Models.Inställningar)">
+        <MappingFragment StoreEntitySet="Companies_Företag">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="IsTypeOf(Invoice.Models.Customer)">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Namn" ColumnName="Namn" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ReferensPersoner" ColumnName="ReferensPersoner" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Invoice.Models.Kund)">
+        <MappingFragment StoreEntitySet="Customers_Kund">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dailyreports">
+      <EntityTypeMapping TypeName="IsTypeOf(Invoice.Models.Dailyreport)">
+        <MappingFragment StoreEntitySet="Dailyreports">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="Kund" ColumnName="Kund" />
+          <ScalarProperty Name="Projekt" ColumnName="Projekt" />
+          <ScalarProperty Name="Anställd" ColumnName="Anställd" />
+          <ScalarProperty Name="StartTid" ColumnName="StartTid" />
+          <ScalarProperty Name="SlutTid" ColumnName="SlutTid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Invoice.Models.Dagsrapport)">
+        <MappingFragment StoreEntitySet="Dailyreports_Dagsrapport">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="IsTypeOf(Invoice.Models.Employee)">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Namn" ColumnName="Namn" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Konto" ColumnName="Konto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Invoice.Models.Anställd)">
+        <MappingFragment StoreEntitySet="Employees_Anställd">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="IsTypeOf(Invoice.Models.Project)">
+        <MappingFragment StoreEntitySet="Projects">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Namn" ColumnName="Namn" />
+          <ScalarProperty Name="Kund" ColumnName="Kund" />
+          <ScalarProperty Name="StartDatum" ColumnName="StartDatum" />
+          <ScalarProperty Name="SlutDatum" ColumnName="SlutDatum" />
+          <ScalarProperty Name="Beskrivning" ColumnName="Beskrivning" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Invoice.Models.Projekt)">
+        <MappingFragment StoreEntitySet="Projects_Projekt">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_ProjektCustomer" TypeName="Invoice.Models.FK_ProjektCustomer" StoreEntitySet="Customers">
+      <EndProperty Name="Projekt">
+        <ScalarProperty Name="Id" ColumnName="Projekt_Id" />
+      </EndProperty>
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_DailyreportEmployees" TypeName="Invoice.Models.FK_DailyreportEmployees" StoreEntitySet="Dailyreports">
+      <EndProperty Name="Employee">
+        <ScalarProperty Name="Id" ColumnName="Employee_Id" />
+      </EndProperty>
+      <EndProperty Name="Dailyreport">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_DailyreportProjekt" TypeName="Invoice.Models.FK_DailyreportProjekt" StoreEntitySet="Dailyreports">
+      <EndProperty Name="Projekt">
+        <ScalarProperty Name="Id" ColumnName="Projekts_Id" />
+      </EndProperty>
+      <EndProperty Name="Dailyreport">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Invoicing" ZoomLevel="109">
+        <EntityTypeShape EntityType="Invoice.Models.Company" Width="3.125" PointX="11.875" PointY="5.125" Height="3.5186979166666665" />
+        <EntityTypeShape EntityType="Invoice.Models.Customer" Width="1.5" PointX="5.25" PointY="6.625" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="Invoice.Models.Dailyreport" Width="1.5" PointX="0.75" PointY="6.25" Height="2.7494921874999996" />
+        <EntityTypeShape EntityType="Invoice.Models.Employee" Width="1.5" PointX="7.25" PointY="6.5" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="Invoice.Models.Project" Width="1.5" PointX="3" PointY="6.375" Height="2.5571907552083317" />
+        <AssociationConnector Association="Invoice.Models.FK_ProjektCustomer" >
+          <ConnectorPoint PointX="4.5" PointY="7.6151432291666659" />
+          <ConnectorPoint PointX="5.25" PointY="7.6151432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="Invoice.Models.FK_DailyreportEmployees" >
+          <ConnectorPoint PointX="1.5" PointY="6.25" />
+          <ConnectorPoint PointX="1.5" PointY="6" />
+          <ConnectorPoint PointX="6.875" PointY="6" />
+          <ConnectorPoint PointX="6.875" PointY="7.5862939453125016" />
+          <ConnectorPoint PointX="7.25" PointY="7.5862939453125016" />
+        </AssociationConnector>
+        <AssociationConnector Association="Invoice.Models.FK_DailyreportProjekt" >
+          <ConnectorPoint PointX="2.25" PointY="7.6535953776041659" />
+          <ConnectorPoint PointX="3" PointY="7.6535953776041659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Invoice.Models.Projekt" Width="1.5" PointX="2.75" PointY="11" Height="1.0187792968749996" />
+        <InheritanceConnector EntityType="Invoice.Models.Projekt" ManuallyRouted="false" >
+          <ConnectorPoint PointX="3.75" PointY="8.9321907552083317" />
+          <ConnectorPoint PointX="3.75" PointY="10.625" />
+          <ConnectorPoint PointX="3.5" PointY="10.625" />
+          <ConnectorPoint PointX="3.5" PointY="11" />
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="Invoice.Models.Kund" Width="1.5" PointX="4.75" PointY="11" Height="1.0187792968749996" />
+        <InheritanceConnector EntityType="Invoice.Models.Kund" ManuallyRouted="false" >
+          <ConnectorPoint PointX="6" PointY="8.6052864583333317" />
+          <ConnectorPoint PointX="6" PointY="10.625" />
+          <ConnectorPoint PointX="5.5" PointY="10.625" />
+          <ConnectorPoint PointX="5.5" PointY="11" />
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="Invoice.Models.Dagsrapport" Width="1.5" PointX="0.875" PointY="11" Height="1.0187792968749996" />
+        <InheritanceConnector EntityType="Invoice.Models.Dagsrapport" ManuallyRouted="false" >
+          <ConnectorPoint PointX="1.5" PointY="8.9994921875" />
+          <ConnectorPoint PointX="1.5" PointY="10.625" />
+          <ConnectorPoint PointX="1.625" PointY="10.625" />
+          <ConnectorPoint PointX="1.625" PointY="11" />
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="Invoice.Models.Anställd" Width="1.5" PointX="8.375" PointY="11" Height="1.0187792968750031" />
+        <InheritanceConnector EntityType="Invoice.Models.Anställd" ManuallyRouted="false" >
+          <ConnectorPoint PointX="8" PointY="8.6725878906250031" />
+          <ConnectorPoint PointX="8" PointY="10.375" />
+          <ConnectorPoint PointX="9.125" PointY="10.375" />
+          <ConnectorPoint PointX="9.125" PointY="11" />
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="Invoice.Models.Inställningar" Width="1.5" PointX="6.5" PointY="11" Height="1.0187792968750031" />
+        <InheritanceConnector EntityType="Invoice.Models.Inställningar" ManuallyRouted="false" >
+          <ConnectorPoint PointX="13.4375" PointY="8.6436979166666674" />
+          <ConnectorPoint PointX="13.4375" PointY="10.625" />
+          <ConnectorPoint PointX="9.2083333333333339" PointY="10.625" />
+          <ConnectorPoint PointX="9.0416666666666661" PointY="10.625" />
+          <ConnectorPoint PointX="7.25" PointY="10.625" />
+          <ConnectorPoint PointX="7.25" PointY="11" />
+        </InheritanceConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

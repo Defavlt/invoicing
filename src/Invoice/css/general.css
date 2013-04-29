@@ -1,0 +1,25 @@
+body {
+	width: 700px;
+	margin: 0 auto;
+}
+
+/*
+ * nav
+ */
+header nav ul li {
+	
+}
+
+/*
+ * Page header
+ */
+ aside 
+ {
+     border-bottom: 1px solid #e5e5e5;
+ }
+ 
+ aside h2,
+ aside h3
+ {
+     display: inline;
+ }
